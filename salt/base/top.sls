@@ -4,6 +4,7 @@
 #    - web.apache
 prod:
   'node1':
-    - apache.init
-    - php.init
-    - mysql.init
+    - lamp
+#    - apache.init
+#    - php.init
+#    - mysql.init

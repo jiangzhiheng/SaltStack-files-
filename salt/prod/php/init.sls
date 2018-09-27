@@ -4,6 +4,7 @@ php-install:
       - php
       - php-pdo
       - php-mysql
+
 php-config:
   file.managed:
     - name: /etc/php.ini

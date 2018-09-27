@@ -14,6 +14,5 @@ apache-service:
   service.running:
     - name: httpd
     - enable: True
-    - reload: True
-    - watch: 
+    - require: 
       - file: apache-config

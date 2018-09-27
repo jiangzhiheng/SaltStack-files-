@@ -1,6 +1,8 @@
 apache-install:
   pkg.installed:
     - name: httpd
+    - require_in:
+      - service: apache-service
 
 apache-config:
   file.managed:
@@ -9,11 +11,10 @@ apache-config:
     - user: root
     - group: root
     - mode: 644
+    - require_in:
+      - service: apache-service
 
 apache-service: 
   service.running:
     - name: httpd
     - enable: True
-    - reload: True
-    - watch: 
-      - file: apache-config
