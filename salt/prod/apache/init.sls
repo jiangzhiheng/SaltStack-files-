@@ -10,6 +10,13 @@ apache-config:
     - group: root
     - mode: 644
 
+apache-auth:
+  pkg.installed:
+    - name: httpd-tools
+  cmd.run:
+    - name: htpasswd -bc /etc/httpd/conf/htpasswd_file admin admin
+    - unless: test -f /etc/httpd/conf/htpasswd_file
+
 apache-service: 
   service.running:
     - name: httpd
