@@ -9,13 +9,17 @@ apache-config:
     - user: root
     - group: root
     - mode: 644
+    - template: jinja
+    - defaults:
+      PORT: 80
+      IPADDR: {{ grains['fqdn_ip4'][0] }}
 
-apache-auth:
-  pkg.installed:
-    - name: httpd-tools
-  cmd.run:
-    - name: htpasswd -bc /etc/httpd/conf/htpasswd_file admin admin
-    - unless: test -f /etc/httpd/conf/htpasswd_file
+#apache-auth:
+#  pkg.installed:
+#    - name: httpd-tools
+#  cmd.run:
+#    - name: htpasswd -bc /etc/httpd/conf/htpasswd_file admin admin
+#    - unless: test -f /etc/httpd/conf/htpasswd_file
 
 apache-service: 
   service.running:
